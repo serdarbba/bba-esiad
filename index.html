@@ -10,7 +10,7 @@
 
 <style>
   :root{
-    --ink:#F7F5F0; --ink2:#FFFFFF; --line:rgba(20,28,38,.13);
+    --ink:#EDE7DA; --ink2:#F8F5EE; --line:rgba(20,28,38,.13);
     --paper:#141C26; --mute:#5E6B73;
     --teal:#0E7C72; --brass:#9A6B1F;
   }
@@ -49,6 +49,18 @@
   .one + .one{margin-top:12px}
   .tiny{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;
         color:#7A8890;margin-top:12px}
+
+  .evo{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,20px);
+       margin-top:clamp(18px,2.6vh,28px)}
+  .evo figure{margin:0}
+  .evo .im{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--ink2);
+       aspect-ratio:4/3;box-shadow:0 10px 26px rgba(20,28,38,.10)}
+  .evo .im img{display:block;width:100%;height:100%;object-fit:cover}
+  .evo .w{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;
+       text-transform:uppercase;color:var(--teal);margin:11px 0 4px}
+  .evo .t{font-family:Archivo;font-weight:600;font-size:clamp(13px,1.15vw,16px);line-height:1.25}
+  .evo .d{color:var(--mute);font-size:clamp(12px,1vw,13.5px);line-height:1.4;margin-top:5px}
+  @media (max-width:820px){ .evo{grid-template-columns:1fr 1fr} }
 
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(18px,2.6vh,26px);align-items:center}
   .chip{border:1px solid var(--line);background:var(--ink2);border-radius:6px;padding:9px 15px;
@@ -94,7 +106,7 @@
   .row .c{color:var(--paper);font-size:clamp(13px,1.1vw,15px);line-height:1.45;font-weight:500}
   .row.hd .c{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;
        text-transform:uppercase;color:#7A8890;font-weight:400}
-  .row.hd{background:#F1EEE8}
+  .row.hd{background:#E5DECD}
   .row.hd .a,.row.hd .b{font-family:"JetBrains Mono",monospace;font-size:10px;
        letter-spacing:.2em;text-transform:uppercase;color:#7A8890;font-weight:400}
 
@@ -134,7 +146,7 @@
 
   /* soyut komuta semasi */
   .diagram{border:1px solid var(--line);border-radius:10px;background:
-      radial-gradient(120% 120% at 20% 10%, #FFFFFF 0%, #F3F0EA 55%, #EDE9E1 100%);
+      radial-gradient(120% 120% at 20% 10%, #F8F5EE 0%, #EFE9DC 55%, #E7E0D0 100%);
       overflow:hidden;box-shadow:0 14px 40px rgba(20,28,38,.12)}
   .diagram svg{display:block;width:100%;height:auto}
   .dg-grid{stroke:rgba(20,28,38,.08);stroke-width:1}
@@ -210,11 +222,33 @@
   <section class="slide">
     <div class="eyebrow" data-r="1">Kimiz</div>
     <h2 data-r="2">İnsansız hava aracı üreticisi olarak kurulduk.</h2>
-    <ul class="bul" data-r="3">
-      <li>Uçakları yaptık, teslim ettik. Sistemlerimiz NATO stok numarasıyla kayıtlı.</li>
-      <li>Bir süre sonra şunu fark ettik: zor olan uçağın kendisi değildi. Onu uçuran yazılım, görüntüden anlam çıkaran model, çıkanı birinin önüne koyan sistem. Asıl iş oradaydı.</li>
-      <li>Son iki yıldır ağırlığımız orada.</li>
-    </ul>
+    <p class="one" data-r="3">Yol şu sırayla ilerledi. Her adımda donanımdan biraz daha uzaklaşıp onu yöneten yazılıma yaklaştık.</p>
+    <div class="evo" data-r="3">
+      <figure>
+        <div class="im"><img src="iha.webp" alt="BBA insansız hava aracı"></div>
+        <div class="w">Önce</div>
+        <div class="t">Hava aracının kendisi</div>
+        <div class="d">Platformu biz yaptık, biz teslim ettik. NATO stok numarasıyla kayıtlı.</div>
+      </figure>
+      <figure>
+        <div class="im"><img src="gcs.webp" alt="Yer kontrol istasyonu"></div>
+        <div class="w">Sonra</div>
+        <div class="t">Onu uçuran kontrol yazılımı</div>
+        <div class="d">Yer kontrol istasyonu, görev planlama, uçuş sonrası işleme.</div>
+      </figure>
+      <figure>
+        <div class="im"><img src="swarm_poster.webp" alt="Karışık filo ve sürü"></div>
+        <div class="w">Sonra</div>
+        <div class="t">Bütün insansız sistemler</div>
+        <div class="d">Hava, kara, dok. Başkasının ürettiği araç da aynı ekrandan yönetiliyor.</div>
+      </figure>
+      <figure>
+        <div class="im"><img src="twin.webp" alt="Operasyon kontrol ekranı"></div>
+        <div class="w">Bugün</div>
+        <div class="t">Kontrol katmanının kendisi</div>
+        <div class="d">Artık sadece insansız araç değil. Kamera, sensör, makine, tesisin tamamı.</div>
+      </figure>
+    </div>
   </section>
 
   <!-- 3 · KİMİZ -->

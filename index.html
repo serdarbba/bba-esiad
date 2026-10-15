@@ -62,6 +62,13 @@
   .evo .d{color:#55636B;font-size:clamp(13px,1.05vw,15px);line-height:1.45;margin-top:6px}
   @media (max-width:820px){ .evo{grid-template-columns:1fr} }
 
+  .split.esit{align-items:start;grid-template-columns:1fr 1fr}
+  .split.esit .shot img,.split.esit .shot video{height:clamp(160px,29vh,286px);object-fit:cover}
+
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,1.4vw,18px);
+      margin-top:clamp(18px,2.6vh,28px)}
+  @media (max-width:820px){ .g2{grid-template-columns:1fr} }
+
   .flow{display:flex;align-items:stretch;gap:clamp(6px,.9vw,14px);
         margin-top:clamp(20px,3vh,32px)}
   .fbox{flex:1;background:var(--ink2);border:1px solid var(--line);border-radius:10px;
@@ -357,6 +364,35 @@
     <p class="tiny" data-r="4">Tek başına veri bir şey söylemiyor. Değer, bu dört adımın tamamının işlemesinde.</p>
   </section>
 
+  <!-- 5 · KARAR KATMANI -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">İşin temeli</div>
+    <h2 data-r="2">Her işin altında bir karar katmanı var.</h2>
+    <p class="one" data-r="3">İki kaynaktan da on kaynaktan da binlerce veri gelse, değişen tek şey hacim. İşin sihri kararın nasıl verildiğinde.</p>
+    <div class="g2" data-r="3">
+      <div class="fbox">
+        <div class="n">01 · Risk puanı</div>
+        <h3>Her karar bir risklilik puanı alıyor</h3>
+        <p>Kararları bu puana göre segmentlere ayırıyoruz. Hepsi aynı ağırlıkta değil.</p>
+      </div>
+      <div class="fbox">
+        <div class="n">02 · Artırılmış güvenlik</div>
+        <h3>Risk arttıkça karar daha çok doğrulamadan geçiyor</h3>
+        <p>Düşük riskli karar tek adımda çıkıyor. Yüksek riskli karar ek kontrollerden geçmeden çıkmıyor.</p>
+      </div>
+      <div class="fbox">
+        <div class="n">03 · Öğrenme</div>
+        <h3>Her karardan öğreniyor</h3>
+        <p>Verilen karar ve sonucu kayda giriyor, bir sonraki karar ona göre veriliyor.</p>
+      </div>
+      <div class="fbox son">
+        <div class="n">04 · İnsana bırakma</div>
+        <h3>Belli riskin üstünü sistem vermiyor</h3>
+        <p>O eşiğin üstündeki kararı insana bırakıyor. Eşiği kurulumda tesisle birlikte yazıyoruz.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- 5 · NELER YAPIYORUZ -->
   <section class="slide">
     <div class="eyebrow" data-r="1">Çıktı</div>
@@ -496,33 +532,32 @@
 
   <!-- 13 · NEYE BENZİYOR -->
   <section class="slide">
-    <div class="split rev">
-      <div class="shot" data-r="2">
-        <video src="swarm.mp4" poster="swarm_poster.webp" autoplay muted loop playsinline></video>
+    <div class="eyebrow" data-r="1">İki uç örnek</div>
+    <h2 data-r="2">Yirmi dört araç, ya da hiç yeni donanım.</h2>
+    <div class="split esit" data-r="3" style="margin-top:clamp(16px,2.4vh,26px)">
+      <div>
+        <div class="shot"><video src="swarm.mp4" poster="swarm_poster.webp" autoplay muted loop playsinline></video></div>
+        <div class="fbox" style="border:0;background:transparent;box-shadow:none;padding:14px 0 0">
+          <div class="n">Sürü</div>
+          <h3>Yirmi dört aracı tek operatör yönetiyor</h3>
+          <ul>
+            <li>Her aracın içinde kendi kararını veren bir yazılım var</li>
+            <li>Bölgeleri ve rotaları üstteki komuta katmanı dağıtıyor</li>
+            <li>Kapsama alanı artık pilot sayısına bağlı değil</li>
+          </ul>
+        </div>
       </div>
       <div>
-        <div class="eyebrow" data-r="1">Sürü</div>
-        <h2 data-r="2">Yirmi dört aracı tek operatör yönetiyor.</h2>
-        <ul class="bul" data-r="3">
-          <li>Her aracın içinde kendi kararını veren bir yazılım var.</li>
-          <li>Bölgeleri ve rotaları üstteki komuta katmanı dağıtıyor. Kapsama alanı artık pilot sayısına bağlı değil.</li>
-        </ul>
-        <p class="tiny" data-r="4">Simülasyon ortamımızdan kayıt; üretimdeki komuta arayüzü çalışıyor.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 14 · NEYE BENZİYOR -->
-  <section class="slide">
-    <div class="split rev">
-      <div class="shot" data-r="2"><img src="cv_people.webp" alt="Kameradan yoğunluk analizi"></div>
-      <div>
-        <div class="eyebrow" data-r="1">Mevcut kameralardan</div>
-        <h2 data-r="2">Takılı kameralardan sayım ve yoğunluk çıkarıyoruz.</h2>
-        <ul class="bul" data-r="3">
-          <li>Yeni kamera takmadan yoğunluk, akış, doluluk.</li>
-          <li>Modelleri <b>tesisin kendi görüntüsüyle</b> eğitiyoruz. Hazır veri setiyle eğitilmiş bir model gerçek sahada tutmuyor.</li>
-        </ul>
+        <div class="shot"><img src="cv_people.webp" alt="Kameradan yoğunluk analizi"></div>
+        <div class="fbox" style="border:0;background:transparent;box-shadow:none;padding:14px 0 0">
+          <div class="n">Takılı kameralar</div>
+          <h3>Hiç yeni donanım almadan sayım ve yoğunluk</h3>
+          <ul>
+            <li>Yoğunluk, akış ve doluluk mevcut kameralardan</li>
+            <li>Modelleri tesisin kendi görüntüsüyle eğitiyoruz</li>
+            <li>Hazır veri setiyle eğitilmiş model gerçek sahada tutmuyor</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -542,7 +577,7 @@
   <!-- 16 · NASIL BAŞLANIR -->
   <section class="slide">
     <div class="eyebrow" data-r="1">Nasıl başlanır</div>
-    <h2 data-r="2">Bir işe genelde tek sahadan başlıyoruz.</h2>
+    <h2 data-r="2">Tek sahadan, tek projeden başlıyoruz.</h2>
     <div class="plan" data-r="3">
       <div class="pstep"><div class="w">1. HAFTA</div><div class="t">Tek bir saha seçiliyor<span>Bir fabrika, bir depo, bir liman sahası. Ya da tek bir hat.</span></div></div>
       <div class="pstep"><div class="w">2-3. HAFTA</div><div class="t">Takılı kameralara bağlanıyoruz<span>Yeni donanım alınmıyor. Hangi soruları cevaplayacağımızı en baştan yazıyoruz.</span></div></div>
@@ -550,20 +585,30 @@
     </div>
   </section>
 
-  <!-- 17 · KAPANIŞ -->
+  <!-- KAPANIŞ -->
   <section class="slide">
-    <div class="eyebrow" data-r="1">Yapmak istediğimiz</div>
-    <h2 data-r="2">Aynı işi İzmir'de de yapmak istiyoruz.</h2>
-    <ul class="bul" data-r="3">
-      <li>Bugüne kadar yaptığımız işlerin çoğu yurt dışında oldu.</li>
-      <li>Oysa aynı sorular buradaki fabrikada da duruyor.</li>
-      <li>Merak eden olursa sahayı birlikte gezeriz.</li>
-    </ul>
-    <div class="linkbox" data-r="4">
-      <a class="urlline" href="https://bbateknoloji.com" target="_blank" rel="noopener">bbateknoloji.com</a>
+    <div class="eyebrow" data-r="1">İletişim</div>
+    <h2 data-r="2">Bize ulaşın.</h2>
+    <div class="g2" data-r="3" style="max-width:860px">
+      <div class="fbox">
+        <div class="n">Serdar Batkan</div>
+        <h3>Kurucu</h3>
+        <ul>
+          <li>serdarbatkan@bbateknoloji.com</li>
+          <li>+90 530 597 41 87</li>
+        </ul>
+      </div>
+      <div class="fbox son">
+        <div class="n">BBA Teknoloji A.Ş.</div>
+        <h3>Bilişim Vadisi Teknopark, İzmir</h3>
+        <ul>
+          <li>bbateknoloji.com</li>
+          <li>NCAGE TN069 · NSN kodlu · ISO 9001:2015</li>
+        </ul>
+      </div>
     </div>
-    <p class="tiny" data-r="4">Serdar Batkan · BBA Teknoloji A.Ş. · serdarbatkan@bbateknoloji.com · +90 530 597 41 87</p>
   </section>
+
 </div>
 
 <div id="nav">

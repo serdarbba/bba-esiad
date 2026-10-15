@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="BBA Technology capability profile: AI, autonomous systems and digital twins for industrial and public infrastructure.">
+<meta name="robots" content="noindex">
+<title>BBA Teknoloji — ESİAD Sunumu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+
+<style>
+  :root{
+    --ink:#060C0D; --ink2:#0D1618; --line:rgba(237,231,218,.14);
+    --paper:#EFEADE; --mute:#8DA3A6;
+    --teal:#2FD4C4; --brass:#D7A868;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--ink);color:var(--paper);
+       font-family:Archivo,system-ui,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}
+
+  #deck{position:fixed;inset:0}
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+         padding:clamp(56px,9vh,92px) clamp(22px,5.5vw,88px) clamp(70px,8vh,96px);
+         opacity:0;visibility:hidden;transform:scale(.996);
+         transition:opacity .45s ease, transform .45s ease, visibility .45s}
+  .slide.on{opacity:1;visibility:visible;transform:none}
+
+  [data-r]{opacity:0;transform:translateY(12px);
+           transition:opacity .55s cubic-bezier(.2,.7,.2,1), transform .55s cubic-bezier(.2,.7,.2,1)}
+  .slide.on [data-r]{opacity:1;transform:none}
+  .slide.on [data-r="1"]{transition-delay:.05s}
+  .slide.on [data-r="2"]{transition-delay:.14s}
+  .slide.on [data-r="3"]{transition-delay:.23s}
+  .slide.on [data-r="4"]{transition-delay:.32s}
+  @media (prefers-reduced-motion:reduce){ .slide,[data-r]{transition-duration:.01ms !important} }
+
+  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:clamp(10px,1vw,11.5px);
+           letter-spacing:.24em;text-transform:uppercase;color:var(--teal);
+           margin-bottom:clamp(12px,1.8vh,18px)}
+  h1{font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+     font-size:clamp(38px,6.4vw,88px);line-height:1.02;margin:0;letter-spacing:-.012em;
+     text-wrap:balance;max-width:20ch}
+  h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;
+     font-size:clamp(26px,3.9vw,52px);line-height:1.08;margin:0;letter-spacing:-.01em;
+     text-wrap:balance;max-width:20ch}
+  .one{font-size:clamp(14.5px,1.4vw,18.5px);line-height:1.56;color:#C4D2D3;max-width:56ch;
+       margin:clamp(14px,2vh,20px) 0 0}
+  .one + .one{margin-top:12px}
+  .tiny{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;
+        color:#5E7275;margin-top:12px}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:clamp(18px,2.6vh,26px);align-items:center}
+  .chip{border:1px solid var(--line);background:var(--ink2);border-radius:6px;padding:9px 15px;
+        font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:#C4D2D3}
+  .chip b{color:var(--teal);font-weight:700}
+
+  .live{display:inline-flex;align-items:center;gap:9px;margin-top:clamp(16px,2.4vh,24px);
+        background:var(--teal);color:#032220;text-decoration:none;border-radius:6px;
+        padding:12px 20px;font-family:Archivo;font-weight:600;font-size:clamp(13px,1.15vw,14.5px);
+        transition:transform .2s, box-shadow .2s;align-self:flex-start}
+  .live:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(47,212,196,.22)}
+  .live span{font-family:"JetBrains Mono",monospace;font-size:12px;opacity:.72}
+  .live.ghost{background:transparent;color:var(--teal);border:1px solid rgba(47,212,196,.45)}
+
+  .shot{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ink2);
+        box-shadow:0 20px 56px rgba(0,0,0,.5)}
+  .shot img,.shot video{display:block;width:100%;height:auto}
+  .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);
+         gap:clamp(20px,3vw,48px);align-items:center}
+  .split.rev{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+  .gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));
+       gap:clamp(12px,1.5vw,18px);margin-top:clamp(16px,2.4vh,24px)}
+  .gal figure{margin:0}
+  .gal figcaption{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;
+                  color:#5E7275;margin-top:8px;text-transform:uppercase}
+
+  .refgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,205px),1fr));
+           gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;
+           overflow:hidden;margin-top:clamp(18px,2.8vh,30px)}
+  .ref{background:var(--ink2);padding:clamp(15px,1.8vw,22px)}
+  .ref .n{font-family:Archivo;font-weight:600;font-size:clamp(14.5px,1.3vw,17.5px);line-height:1.25}
+  .ref .c{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;
+          text-transform:uppercase;color:var(--brass);margin-top:9px}
+  .ref .d{font-size:13px;color:var(--mute);margin-top:8px;line-height:1.45}
+
+  .rows{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+        border-radius:10px;overflow:hidden;margin-top:clamp(18px,2.6vh,28px)}
+  .row{background:var(--ink2);padding:clamp(12px,1.4vw,18px) clamp(16px,1.8vw,24px);
+       display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(14px,2vw,28px);align-items:center}
+  .row .a{font-family:Archivo;font-weight:600;font-size:clamp(13.5px,1.2vw,16.5px)}
+  .row .b{color:var(--mute);font-size:clamp(13px,1.1vw,15px);line-height:1.45}
+  .row.hd{background:#0A1314}
+  .row.hd .a,.row.hd .b{font-family:"JetBrains Mono",monospace;font-size:10px;
+       letter-spacing:.2em;text-transform:uppercase;color:#6F8588;font-weight:400}
+
+  .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));
+        gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;
+        overflow:hidden;margin-top:clamp(16px,2.4vh,24px)}
+  .num{background:var(--ink2);padding:clamp(13px,1.5vw,18px)}
+  .num .v{font-family:"JetBrains Mono",monospace;font-weight:700;
+          font-size:clamp(18px,2vw,27px);color:var(--teal);letter-spacing:-.02em;line-height:1}
+  .num .l{font-size:11px;color:var(--mute);margin-top:7px;line-height:1.35}
+
+  .plan{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+        border-radius:10px;overflow:hidden;margin-top:clamp(18px,2.8vh,30px)}
+  .pstep{background:var(--ink2);padding:clamp(14px,1.6vw,20px) clamp(16px,1.8vw,24px);
+         display:grid;grid-template-columns:clamp(78px,8.5vw,116px) 1fr;gap:clamp(14px,2vw,26px);
+         align-items:baseline}
+  .pstep .w{font-family:"JetBrains Mono",monospace;font-size:clamp(10.5px,1vw,12px);
+            font-weight:700;color:var(--brass)}
+  .pstep .t{font-family:Archivo;font-weight:600;font-size:clamp(13.5px,1.2vw,16.5px)}
+  .pstep .t span{display:block;font-weight:400;color:var(--mute);font-size:13.5px;
+                 margin-top:3px;line-height:1.45}
+
+  ul.bul{list-style:none;margin:clamp(14px,2vh,20px) 0 0;padding:0;display:grid;
+         gap:clamp(9px,1.3vh,13px);max-width:54ch}
+  ul.bul li{position:relative;padding-left:24px;font-size:clamp(14px,1.3vw,17px);
+            line-height:1.5;color:#C4D2D3}
+  ul.bul li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;
+            background:var(--teal)}
+  ul.bul li b{color:var(--paper);font-weight:600}
+
+  .linkbox{margin-top:clamp(16px,2.4vh,24px);display:grid;gap:9px;justify-items:start}
+  .urlline{font-family:"JetBrains Mono",monospace;font-size:clamp(11px,1.05vw,13px);
+           color:var(--teal);text-decoration:none;border-bottom:1px dotted rgba(47,212,196,.45);
+           padding-bottom:2px;word-break:break-all}
+  .urlline:hover{color:#8FEFE2}
+  .urlline b{color:#5E7275;font-weight:400}
+
+  /* soyut komuta semasi */
+  .diagram{border:1px solid var(--line);border-radius:10px;background:
+      radial-gradient(120% 120% at 20% 10%, #10201F 0%, #0A1214 55%, #070D0E 100%);
+      overflow:hidden;box-shadow:0 20px 56px rgba(0,0,0,.5)}
+  .diagram svg{display:block;width:100%;height:auto}
+  .dg-grid{stroke:rgba(237,231,218,.07);stroke-width:1}
+  .dg-sector{fill:rgba(47,212,196,.045);stroke:rgba(47,212,196,.34);
+             stroke-width:1.4;stroke-dasharray:7 6}
+  .dg-link{stroke:rgba(47,212,196,.5);stroke-width:1.3;fill:none;
+           stroke-dasharray:5 9;animation:dgflow 2.6s linear infinite}
+  @keyframes dgflow{to{stroke-dashoffset:-56}}
+  .dg-hub{fill:#D7A868}
+  .dg-ring{fill:none;stroke:rgba(215,168,72,.55);stroke-width:1.2;
+           transform-origin:center;animation:dgpulse 3.4s ease-out infinite}
+  .dg-ring.b{animation-delay:1.15s}
+  .dg-ring.c{animation-delay:2.3s}
+  @keyframes dgpulse{0%{r:8;opacity:.75}100%{r:62;opacity:0}}
+  .dg-air{fill:#2FD4C4}
+  .dg-trail{fill:none;stroke:rgba(47,212,196,.2);stroke-width:1;stroke-dasharray:3 5}
+  .dg-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;
+          fill:#6F8588;letter-spacing:.14em}
+  .dg-lbl.on{fill:#2FD4C4}
+  @media (prefers-reduced-motion:reduce){
+    .dg-link,.dg-ring{animation:none}
+    .dg-ring{opacity:.3}
+  }
+
+  #bar{position:fixed;top:0;left:0;height:2px;background:var(--teal);width:0;
+       transition:width .45s cubic-bezier(.2,.7,.2,1);z-index:40}
+  #brand{position:fixed;top:clamp(16px,2.6vh,26px);left:clamp(22px,5.5vw,88px);z-index:30;
+         font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.2em;
+         text-transform:uppercase;color:#56696B;pointer-events:none}
+  #brand b{color:var(--paper);font-weight:400}
+  #nav{position:fixed;bottom:clamp(16px,2.6vh,26px);left:clamp(22px,5.5vw,88px);
+       right:clamp(22px,5.5vw,88px);z-index:30;display:flex;align-items:center;
+       justify-content:space-between;gap:16px;pointer-events:none}
+  #dots{display:flex;gap:6px;flex-wrap:wrap;pointer-events:auto}
+  .dot{width:6px;height:6px;border-radius:50%;background:#2A3A3C;border:0;padding:0;cursor:pointer;
+       transition:background .3s,transform .3s}
+  .dot.on{background:var(--teal);transform:scale(1.5)}
+  #count{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:#56696B;letter-spacing:.1em}
+
+  @media (max-width:820px){
+    .split,.split.rev{grid-template-columns:1fr;gap:18px}
+    .row{grid-template-columns:1fr;gap:4px}
+    .pstep{grid-template-columns:1fr;gap:3px}
+    .slide{justify-content:flex-start;padding-top:clamp(56px,10vh,80px);overflow-y:auto}
+  }
+</style>
+
+</head>
+<body>
+<div id="bar"></div>
+<div id="brand"><b>BBA TEKNOLOJİ</b> &nbsp;·&nbsp; İzmir</div>
+
+<div id="deck">
+
+  <!-- 1 -->
+  <!-- 1 · KİMİZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">BBA Teknoloji · İzmir · Ekim 2026</div>
+    <h1 data-r="2">Dron yaparak başladık. Asıl derinleştiğimiz yer yazılım oldu.</h1>
+    <div class="chips" data-r="3">
+      <span class="chip">Bilişim Vadisi Teknopark</span>
+      <span class="chip"><b>ISO</b> 9001:2015</span>
+      <span class="chip"><b>NCAGE</b> TN069</span>
+      <span class="chip"><b>NSN</b> kodlu</span>
+    </div>
+    <div class="linkbox" data-r="4">
+      <a class="urlline" href="https://bbateknoloji.com" target="_blank" rel="noopener">bbateknoloji.com</a>
+    </div>
+  </section>
+
+  <!-- 2 · KİMİZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Kimiz</div>
+    <h2 data-r="2">İnsansız hava aracı üreticisi olarak kurulduk.</h2>
+    <ul class="bul" data-r="3">
+      <li>Platformlarımızı yaptık ve teslim ettik; sistemlerimiz NATO stok numarasıyla kayıtlı.</li>
+      <li>Ama bu işte zor olanın <b>platform olmadığını</b> gördük.</li>
+      <li>Zor olan onu uçuran kontrol katmanı, görüntüden anlam çıkaran yapay zekâ, ve bunu karara çeviren operasyon sistemiydi.</li>
+      <li>Son iki yılda ağırlığımız oraya kaydı.</li>
+    </ul>
+  </section>
+
+  <!-- 3 · KİMİZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Bağımsız doğrulanabilir kayıtlar</div>
+    <h2 data-r="2">Söylediğimizin karşılığı resmî kayıtlarda duruyor.</h2>
+    <div class="refgrid" data-r="3">
+      <div class="ref">
+        <div class="n">NCAGE TN069</div><div class="c">Aktif</div>
+        <div class="d">Millî Savunma Bakanlığı tarafından verilmiş NATO tedarikçi kodu. NATO kodlandırma veritabanından sorgulanabilir.</div>
+      </div>
+      <div class="ref">
+        <div class="n">NATO Stok Numarası</div><div class="c">Kodlandırıldı</div>
+        <div class="d">Sistemlerimiz müttefik tedarik zincirinde NSN ile tanımlı.</div>
+      </div>
+      <div class="ref">
+        <div class="n">ISO 9001:2015</div><div class="c">Akredite kuruluş</div>
+        <div class="d">Kalite yönetim belgesi; yazılım geliştirme belge kapsamının içinde.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · NELER YAPIYORUZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Neler yapıyoruz</div>
+    <h2 data-r="2">Donanımı kontrol ediyoruz, çıkan veriyi karara çeviriyoruz.</h2>
+    <div class="rows" data-r="3">
+      <div class="row hd"><div class="a">Adım</div><div class="b">Ne oluyor</div></div>
+      <div class="row"><div class="a">Kontrol</div><div class="b">Kamera, geçiş sistemi, sensör, alarm paneli, insansız hava aracı, yer robotu, dok. Markası fark etmiyor, tek yerden yönetiliyor.</div></div>
+      <div class="row"><div class="a">Veri</div><div class="b">Bu cihazlardan çıkan görüntü, telemetri ve kayıt.</div></div>
+      <div class="row"><div class="a">Sonuç</div><div class="b">Yapay zekâ bunu bulguya çeviriyor: ne oldu, nerede, ne zaman, ne kadar eminiz.</div></div>
+      <div class="row"><div class="a">Karar</div><div class="b">Bulgu sıraya giriyor, önceliklendiriliyor, sorumlusuna düşüyor, tarihli kayda yazılıyor.</div></div>
+    </div>
+  </section>
+
+  <!-- 5 · NELER YAPIYORUZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Karar katmanı</div>
+    <h2 data-r="2">Nerede duracağına siz karar verirsiniz.</h2>
+    <ul class="bul" data-r="3">
+      <li>Bazı işlerde sistem burada durur ve kararı <b>insana bırakır</b>. Önüne sıralanmış, kanıtı ekli bir liste gelir.</li>
+      <li>Bazı işlerde sistem <b>kendisi harekete geçer</b>: en yakın ekibi yönlendirir, aracı kaldırır, kapıyı kapatır, anons verir.</li>
+      <li>Hangi olayda hangisinin olacağına tesis karar verir, biz değil.</li>
+      <li>Her iki durumda da yapılan her şey tarihli ve değiştirilemez kayda geçer.</li>
+    </ul>
+  </section>
+
+  <!-- 6 · NELER YAPIYORUZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Pratikte ne çıkıyor</div>
+    <h2 data-r="2">Beş iş, aynı motordan.</h2>
+    <div class="rows" data-r="3">
+      <div class="row"><div class="a">Sayıyoruz</div><div class="b">Araç, konteyner, palet, insan. Hangi saatte, hangi bölgede, kaç tane.</div></div>
+      <div class="row"><div class="a">Ölçüyoruz</div><div class="b">Alan, stok hacmi, doluluk, ve iki tarih arasında ne değişti.</div></div>
+      <div class="row"><div class="a">İhlali görüyoruz</div><div class="b">Yasak bölgeye giren, koruyucu ekipmansız çalışan, yanlış yönde ilerleyen, kapalı alanda yalnız kalan.</div></div>
+      <div class="row"><div class="a">Durumu sınıflandırıyoruz</div><div class="b">Hasarlı ya da eksik ekipman, korozyon, sızıntı, ısı anomalisi, yüzey hatası.</div></div>
+      <div class="row"><div class="a">Makineyi dinliyoruz</div><div class="b">Titreşim, sıcaklık, batarya. Arıza olmadan önceki işaret.</div></div>
+    </div>
+  </section>
+
+  <!-- 7 · NASIL YAPIYORUZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Nasıl yapıyoruz</div>
+    <h2 data-r="2">Sahada zaten takılı olan donanımla başlıyoruz.</h2>
+    <ul class="bul" data-r="3">
+      <li>Mevcut kameralarınız sistemin ilk günden girdisi olur.</li>
+      <li>Fabrika verisi, sensörler ve geçiş kayıtları aynı resme dahil edilir.</li>
+      <li>İnsansız hava aracı, yer robotu ve dok, ihtiyaç duyulduğunda aynı ekrana eklenir.</li>
+      <li>Donanım kararı sizde kalır; biz hiçbir markanın satıcısı değiliz.</li>
+    </ul>
+  </section>
+
+  <!-- 8 · NASIL YAPIYORUZ -->
+  <section class="slide">
+    <div class="split rev">
+      <div class="shot" data-r="2"><img src="phone.webp" alt="Platform sahada, telefon üzerinde"></div>
+      <div>
+        <div class="eyebrow" data-r="1">Nerede çalışır</div>
+        <h2 data-r="2">Sizin sunucunuzda. Görüntü tesisten çıkmaz.</h2>
+        <ul class="bul" data-r="3">
+          <li>Kurulum kurumun kendi donanımında yapılır, buluta mecburiyet yok.</li>
+          <li>Ağ olmadan da çalışır.</li>
+          <li>Aynı sistem saha ekibinin telefonunda, tam ekran.</li>
+          <li>Mevcut güvenlik ya da otomasyon düzeninizin <b>yerine geçmez, üstüne oturur.</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · NEREDE YAPIYORUZ -->
+  <section class="slide">
+    <div class="split">
+      <div>
+        <div class="eyebrow" data-r="1">Dubai · 303.000 m²</div>
+        <h2 data-r="2">Bir yerleşkenin tamamı tek operasyon ekranında.</h2>
+        <ul class="bul" data-r="3">
+          <li>Gerçek saha zemini üzerinde üç boyutlu model, dekor değil.</li>
+          <li>Kameralardan gelen canlı analiz ikizin içine çiziliyor.</li>
+          <li>Geçiş kontrolü, alarmlar, çevre sensörleri, devriye rotaları.</li>
+          <li>Kat kat müdahale ve eksiksiz olay kaydı.</li>
+        </ul>
+      </div>
+      <div class="shot" data-r="3"><img src="twin.webp" alt="Dijital ikiz operasyon konsolu"></div>
+    </div>
+  </section>
+
+  <!-- 10 · NEREDE YAPIYORUZ -->
+  <section class="slide">
+    <div class="split">
+      <div>
+        <div class="eyebrow" data-r="1">Dubai Belediyesi</div>
+        <h2 data-r="2">Kıyı izleme programı, bu ay başlıyor.</h2>
+        <ul class="bul" data-r="3">
+          <li>Tek uçuştan <b>on beş ayrı analiz</b>, tarihli rapor halinde.</li>
+          <li>Kurumun kendi sunucusunda çalışıyor.</li>
+          <li>İhalede yazılı sayısal kabul kriterleriyle ölçülüyor.</li>
+        </ul>
+      </div>
+      <div class="shot" data-r="3">
+        <video src="coastal.mp4" poster="coastal_poster.webp" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · NEREDE YAPIYORUZ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Nerede çalışıyoruz</div>
+    <h2 data-r="2">Kamu, enerji ve savunma.</h2>
+    <div class="refgrid" data-r="3">
+      <div class="ref"><div class="n">Dubai Belediyesi</div><div class="c">BAE</div><div class="d">Kıyı izleme programı, yazılı kabul kriterleriyle.</div></div>
+      <div class="ref"><div class="n">Türkiye Petrolleri</div><div class="c">Türkiye · Enerji</div><div class="d">Denetim ve raporlamanın yaklaşık olamayacağı bir sektör.</div></div>
+      <div class="ref"><div class="n">İzmir Büyükşehir Belediyesi</div><div class="c">Türkiye</div><div class="d">Şehir ölçeğinde kazı ve altyapı takibi, tekrarlı uçuşlarla.</div></div>
+      <div class="ref"><div class="n">Millî Savunma Bakanlığı</div><div class="c">Türkiye</div><div class="d">İnsansız hava aracı programı. NCAGE kaydımızın ve NSN kodlamamızın kaynağı.</div></div>
+      <div class="ref"><div class="n">303.000 m² geliştirme</div><div class="c">Dubai</div><div class="d">Dokuz modüllü güvenlik ve operasyon merkezi.</div></div>
+    </div>
+    <p class="tiny" data-r="4">Umman, Pakistan ve Cibuti'de yeni projeler başlıyor. Merkezimiz İzmir'de, Bilişim Vadisi'nde.</p>
+  </section>
+
+  <!-- 12 · NEYE BENZİYOR -->
+  <section class="slide">
+    <div class="split">
+      <div>
+        <div class="eyebrow" data-r="1">Karışık filo yönetimi</div>
+        <h2 data-r="2">Hangi marka olursa olsun tek komuta ekranı.</h2>
+        <ul class="bul" data-r="3">
+          <li>DJI, PX4, ArduPilot ve özel platformlar aynı resimde.</li>
+          <li>Görev planı, canlı telemetri, filo sağlığı.</li>
+          <li>Uçuş sonrası işleme otomatik.</li>
+        </ul>
+        <div class="nums" data-r="4">
+          <div class="num"><div class="v">4</div><div class="l">uçuş yazılımı destekleniyor</div></div>
+          <div class="num"><div class="v">52 sn</div><div class="l">alarmdan havalanmaya</div></div>
+          <div class="num"><div class="v">3</div><div class="l">ülkede sahada</div></div>
+        </div>
+      </div>
+      <div class="shot" data-r="3"><img src="gcs.webp" alt="Yer kontrol istasyonu"></div>
+    </div>
+  </section>
+
+  <!-- 13 · NEYE BENZİYOR -->
+  <section class="slide">
+    <div class="split rev">
+      <div class="shot" data-r="2">
+        <video src="swarm.mp4" poster="swarm_poster.webp" autoplay muted loop playsinline></video>
+      </div>
+      <div>
+        <div class="eyebrow" data-r="1">Sürü</div>
+        <h2 data-r="2">Yirmi dört araç, tek operatör.</h2>
+        <ul class="bul" data-r="3">
+          <li>Her araç kendi kararını veren bir yazılım taşıyor.</li>
+          <li>Komutan katman bölgeleri ve rotaları kendisi dağıtıyor.</li>
+          <li>Kapsama alanı artık pilot sayısıyla sınırlı değil.</li>
+        </ul>
+        <p class="tiny" data-r="4">Simülasyon ortamımızdan kayıt; üretimdeki komuta arayüzü çalışıyor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · NEYE BENZİYOR -->
+  <section class="slide">
+    <div class="split rev">
+      <div class="shot" data-r="2"><img src="cv_people.webp" alt="Kameradan yoğunluk analizi"></div>
+      <div>
+        <div class="eyebrow" data-r="1">Mevcut kameralardan</div>
+        <h2 data-r="2">Tespit, sayım ve yoğunluk.</h2>
+        <ul class="bul" data-r="3">
+          <li>Takılı kameralarla yoğunluk, akış ve doluluk.</li>
+          <li>Modeller <b>tesisin kendi görüntüsüyle</b> eğitiliyor.</li>
+          <li>Hazır veri setiyle eğitilmiş model gerçek sahada ayakta kalmıyor.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 · NEYE BENZİYOR -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Sahaya girmeden ölçüm</div>
+    <h2 data-r="2">Aynı yöntem, farklı sanayi sahaları.</h2>
+    <div class="gal" data-r="3">
+      <figure><div class="shot"><img src="kart_sohar.webp" alt="Tank sahası"></div><figcaption>Tank sahası · 55 tank sayıldı ve ölçüldü</figcaption></figure>
+      <figure><div class="shot"><img src="kart_liman.webp" alt="Konteyner terminali"></div><figcaption>Konteyner terminali</figcaption></figure>
+      <figure><div class="shot"><img src="kart_tersane.webp" alt="Tersane"></div><figcaption>Tersane</figcaption></figure>
+    </div>
+    <p class="tiny" data-r="4">Kamuya açık uydu görüntüsünden, piksel başına 0,27 metre. Donanım yok, saha erişimi yok, izin yok.</p>
+  </section>
+
+  <!-- 16 · NASIL BAŞLANIR -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Nasıl başlanır</div>
+    <h2 data-r="2">Bir saha, bir ay, mevcut kameralarınızla.</h2>
+    <div class="plan" data-r="3">
+      <div class="pstep"><div class="w">1. HAFTA</div><div class="t">Tek bir saha<span>Bir fabrika, bir depo, bir liman sahası ya da bir hat. İsmiyle belirlenir.</span></div></div>
+      <div class="pstep"><div class="w">2-3. HAFTA</div><div class="t">Mevcut kameralara bağlanma<span>Yeni donanım alınmaz. Hangi soruları cevaplayacağımız önceden yazılır.</span></div></div>
+      <div class="pstep"><div class="w">4. HAFTA</div><div class="t">Rapor<span>Ay sonunda hangi noktanın tekrar tekrar sorun çıkardığını gösteren tarihli rapor elinizde olur.</span></div></div>
+    </div>
+  </section>
+
+  <!-- 17 · KAPANIŞ -->
+  <section class="slide">
+    <div class="eyebrow" data-r="1">Tek isteğimiz</div>
+    <h2 data-r="2">Bir tesisinizi gezelim.</h2>
+    <ul class="bul" data-r="3">
+      <li>Teklif ya da fiyat konuşmadan, sahayı birlikte görelim.</li>
+      <li>Hangi kameraların takılı olduğunu ve hangi soruların cevapsız kaldığını birlikte çıkaralım.</li>
+      <li>Bir şey çıkmazsa kimse bir şey kaybetmez.</li>
+    </ul>
+    <div class="linkbox" data-r="4">
+      <a class="urlline" href="https://bbateknoloji.com" target="_blank" rel="noopener">bbateknoloji.com</a>
+    </div>
+    <p class="tiny" data-r="4">Serdar Batkan · BBA Teknoloji A.Ş. · serdarbatkan@bbateknoloji.com · +90 530 597 41 87</p>
+  </section>
+</div>
+
+<div id="nav">
+  <div id="dots"></div>
+  <div id="count">01 / 17</div>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dots = document.getElementById('dots');
+  var bar = document.getElementById('bar');
+  var count = document.getElementById('count');
+  var i = 0;
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'dot';
+    b.setAttribute('aria-label', 'Ekran ' + (n+1));
+    b.addEventListener('click', function(e){ e.stopPropagation(); go(n); });
+    dots.appendChild(b);
+  });
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function go(n){
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function(s, k){ s.classList.toggle('on', k === i); });
+    Array.prototype.forEach.call(dots.children, function(d, k){ d.classList.toggle('on', k === i); });
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    count.textContent = pad(i + 1) + ' / ' + pad(slides.length);
+    try { history.replaceState(null, '', '#' + (i + 1)); } catch(e){}
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); go(i+1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); go(i-1); }
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(slides.length - 1);
+  });
+
+  document.addEventListener('click', function(e){
+    if (e.target.closest('#dots') || e.target.closest('a')) return;
+    go(e.clientX < window.innerWidth * 0.28 ? i - 1 : i + 1);
+  });
+
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 48) go(dx < 0 ? i + 1 : i - 1);
+    x0 = null;
+  }, {passive:true});
+
+  var start = parseInt((location.hash || '').replace('#',''), 10);
+  go(isNaN(start) ? 0 : start - 1);
+})();
+</script>
+
+</body>
+</html>

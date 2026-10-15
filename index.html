@@ -90,6 +90,10 @@
        display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(14px,2vw,28px);align-items:center}
   .row .a{font-family:Archivo;font-weight:600;font-size:clamp(13.5px,1.2vw,16.5px)}
   .row .b{color:var(--mute);font-size:clamp(13px,1.1vw,15px);line-height:1.45}
+  .rows.uc .row{grid-template-columns:.78fr 1.35fr 1.1fr}
+  .row .c{color:var(--paper);font-size:clamp(13px,1.1vw,15px);line-height:1.45;font-weight:500}
+  .row.hd .c{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.2em;
+       text-transform:uppercase;color:#7A8890;font-weight:400}
   .row.hd{background:#F1EEE8}
   .row.hd .a,.row.hd .b{font-family:"JetBrains Mono",monospace;font-size:10px;
        letter-spacing:.2em;text-transform:uppercase;color:#7A8890;font-weight:400}
@@ -172,7 +176,7 @@
 
   @media (max-width:820px){
     .split,.split.rev{grid-template-columns:1fr;gap:18px}
-    .row{grid-template-columns:1fr;gap:4px}
+    .row,.rows.uc .row{grid-template-columns:1fr;gap:4px}
     .pstep{grid-template-columns:1fr;gap:3px}
     .slide{justify-content:flex-start;padding-top:clamp(56px,10vh,80px);overflow-y:auto}
   }
@@ -236,13 +240,13 @@
   <!-- 4 · NELER YAPIYORUZ -->
   <section class="slide">
     <div class="eyebrow" data-r="1">Neler yapıyoruz</div>
-    <h2 data-r="2">Donanımı kontrol ediyoruz, çıkan veriyi karara çeviriyoruz.</h2>
+    <h2 data-r="2">Sahadan veri topluyoruz, firmanın kendi verisiyle işliyoruz.</h2>
     <div class="rows" data-r="3">
       <div class="row hd"><div class="a">Adım</div><div class="b">Ne oluyor</div></div>
-      <div class="row"><div class="a">Kontrol</div><div class="b">Kamera, geçiş sistemi, sensör, alarm paneli, insansız hava aracı, yer robotu, dok. Markası fark etmiyor, tek yerden yönetiliyor.</div></div>
-      <div class="row"><div class="a">Veri</div><div class="b">Bu cihazlardan çıkan görüntü, telemetri ve kayıt.</div></div>
-      <div class="row"><div class="a">Sonuç</div><div class="b">Yapay zekâ bunu bulguya çeviriyor: ne oldu, nerede, ne zaman, ne kadar eminiz.</div></div>
-      <div class="row"><div class="a">Karar</div><div class="b">Bulgu sıraya giriyor, önceliklendiriliyor, sorumlusuna düşüyor, tarihli kayda yazılıyor.</div></div>
+      <div class="row"><div class="a">1 · Topluyoruz</div><div class="b">Kameralar, geçiş sistemleri, sensörler, debimetreler, sayaçlar, üretim makineleri, insansız hava araçları, yer robotları, saha ekibinin telefonundaki uygulama. Bir kısmını aynı zamanda biz kontrol ediyoruz.</div></div>
+      <div class="row"><div class="a">2 · Birleştiriyoruz</div><div class="b">Sahadan gelen bu veri tek başına bir şey söylemiyor. Firmanın kendi verisiyle yan yana koyuyoruz: vardiya planı, üretim emri, bakım kaydı, stok, doluluk, personel listesi.</div></div>
+      <div class="row"><div class="a">3 · Anlamlandırıyoruz</div><div class="b">Yapay zekâ bunu bulguya çeviriyor. Ne oldu, nerede, ne zaman, ne kadar eminiz.</div></div>
+      <div class="row"><div class="a">4 · Aksiyona çeviriyoruz</div><div class="b">Bulgu sıraya giriyor, sorumlusuna düşüyor, tarihli kayda yazılıyor.</div></div>
     </div>
   </section>
 
@@ -261,12 +265,13 @@
   <section class="slide">
     <div class="eyebrow" data-r="1">Pratikte ne çıkıyor</div>
     <h2 data-r="2">Sahadaki karşılığı şu beş iş.</h2>
-    <div class="rows" data-r="3">
-      <div class="row"><div class="a">Sayıyoruz</div><div class="b">Araç, konteyner, palet, insan. Hangi saatte, hangi bölgede, kaç tane.</div></div>
-      <div class="row"><div class="a">Ölçüyoruz</div><div class="b">Alan, stok hacmi, doluluk, ve iki tarih arasında ne değişti.</div></div>
-      <div class="row"><div class="a">İhlali görüyoruz</div><div class="b">Yasak bölgeye giren, koruyucu ekipmansız çalışan, yanlış yönde ilerleyen, kapalı alanda yalnız kalan.</div></div>
-      <div class="row"><div class="a">Durumu sınıflandırıyoruz</div><div class="b">Hasarlı ya da eksik ekipman, korozyon, sızıntı, ısı anomalisi, yüzey hatası.</div></div>
-      <div class="row"><div class="a">Makineyi dinliyoruz</div><div class="b">Titreşim, sıcaklık, batarya. Arıza olmadan önceki işaret.</div></div>
+    <div class="rows uc" data-r="3">
+      <div class="row hd"><div class="a">İş</div><div class="b">Ne görüyoruz</div><div class="c">Ne kazandırıyor</div></div>
+      <div class="row"><div class="a">Sayıyoruz</div><div class="b">Araç, konteyner, palet, insan. Hangi saatte, hangi bölgede, kaç tane.</div><div class="c">Sayım için sahaya adam göndermek gerekmiyor. Rakam her gün aynı yöntemle çıktığı için karşılaştırılabiliyor.</div></div>
+      <div class="row"><div class="a">Ölçüyoruz</div><div class="b">Alan, stok hacmi, doluluk, iki tarih arasında ne değişti.</div><div class="c">Stok ve ilerleme beyana değil ölçüme dayanıyor. Hakediş ve sayım tartışması bitiyor.</div></div>
+      <div class="row"><div class="a">İhlali görüyoruz</div><div class="b">Yasak bölgeye giren, koruyucu ekipmansız çalışan, kapalı alanda yalnız kalan.</div><div class="c">İş kazası ve ceza riski olay olmadan önce görünüyor. Olduğunda da kaydı duruyor.</div></div>
+      <div class="row"><div class="a">Durumu sınıflandırıyoruz</div><div class="b">Hasarlı ekipman, korozyon, sızıntı, ısı anomalisi, yüzey hatası.</div><div class="c">Bakım, arıza çıktıktan sonra değil önce planlanıyor.</div></div>
+      <div class="row"><div class="a">Makineyi dinliyoruz</div><div class="b">Titreşim, sıcaklık, batarya. Arızadan önceki işaret.</div><div class="c">Duruş, vardiyayı vurmadan haber veriyor.</div></div>
     </div>
   </section>
 

@@ -72,6 +72,14 @@
   .fbox h3{margin:9px 0 8px;font-family:Archivo;font-weight:600;
         font-size:clamp(15px,1.5vw,21px);line-height:1.15;letter-spacing:-.005em}
   .fbox p{margin:0;color:#55636B;font-size:clamp(13px,1.1vw,15.5px);line-height:1.5}
+  .fbox ul{margin:4px 0 0;padding:0;list-style:none}
+  .fbox ul li{color:#44525A;font-size:clamp(13.5px,1.15vw,16px);line-height:1.45;
+        padding:clamp(8px,1.1vh,11px) 0 clamp(8px,1.1vh,11px) 20px;position:relative;
+        border-top:1px solid var(--line)}
+  .fbox ul li:first-child{border-top:0;padding-top:4px}
+  .fbox ul li::before{content:"";position:absolute;left:2px;top:1.08em;width:6px;height:6px;
+        border-radius:50%;background:var(--teal);opacity:.85}
+  .fbox ul li:first-child::before{top:.62em}
   .farr.veya{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;
         text-transform:uppercase;color:var(--mute)}
   .farr{align-self:center;color:var(--teal);font-size:clamp(16px,1.8vw,26px);flex:0 0 auto}
@@ -169,11 +177,11 @@
                  margin-top:3px;line-height:1.45}
 
   ul.bul{list-style:none;margin:clamp(14px,2vh,20px) 0 0;padding:0;display:grid;
-         gap:clamp(9px,1.3vh,13px);max-width:54ch}
+         gap:clamp(11px,1.6vh,16px);max-width:54ch}
   ul.bul li{position:relative;padding-left:24px;font-size:clamp(14px,1.3vw,17px);
             line-height:1.5;color:#44525A}
-  ul.bul li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;
-            background:var(--teal)}
+  ul.bul li::before{content:"";position:absolute;left:1px;top:.58em;width:7px;height:7px;
+            border-radius:50%;border:2px solid var(--teal);box-sizing:border-box}
   ul.bul li b{color:var(--paper);font-weight:600}
 
   .linkbox{margin-top:clamp(16px,2.4vh,24px);display:grid;gap:9px;justify-items:start}
@@ -351,22 +359,32 @@
 
   <!-- 5 · NELER YAPIYORUZ -->
   <section class="slide">
-    <div class="eyebrow" data-r="1">Karar katmanı</div>
-    <h2 data-r="2">Aksiyonu bazen sistem alıyor, bazen sadece haber veriyor.</h2>
+    <div class="eyebrow" data-r="1">Çıktı</div>
+    <h2 data-r="2">Çıktıyı projenin ihtiyacına göre kuruyoruz.</h2>
     <div class="flow" data-r="3">
       <div class="fbox">
-        <div class="n">Sonucu bırakıyoruz</div>
-        <h3>Bulguyu önüne koyuyor, kararı insan veriyor</h3>
-        <p>Ne oldu, nerede, kanıtı ne. Sıralanmış bir liste olarak ilgili kişiye düşüyor.</p>
+        <div class="n">Bilgi olarak</div>
+        <h3>Çıktı bir bildirim ya da rapor</h3>
+        <ul>
+          <li>Tesis yetkilisine anlık bildirim</li>
+          <li>Firmaya tarihli rapor</li>
+          <li>Sıralanmış, kanıtı ekli liste</li>
+        </ul>
       </div>
       <i class="farr veya">veya</i>
       <div class="fbox son">
-        <div class="n">Aksiyonu alıyoruz</div>
-        <h3>Sistem kendisi harekete geçiyor</h3>
-        <p>En yakın ekibi yönlendiriyor, kapıyı kapatıyor, anons veriyor, aracı kaldırıyor.</p>
+        <div class="n">Aksiyon olarak</div>
+        <h3>Çıktı doğrudan sahada bir hareket</h3>
+        <ul>
+          <li>Drone kaldırıyoruz</li>
+          <li>Alarm veriyoruz</li>
+          <li>Kapıları kapatıyoruz</li>
+          <li>Makineyi hızlandırıyoruz</li>
+          <li>En yakın ekibi yönlendiriyoruz</li>
+        </ul>
       </div>
     </div>
-    <p class="tiny" data-r="4">Hangi olayda hangisi olacak, kurulumda tek tek yazılıyor. Listeyi tesis belirliyor. İki durumda da yapılan her şey tarihli kayda giriyor.</p>
+    <p class="tiny" data-r="4">Hangi olayda hangi çıktı olacak, kurulumda tek tek yazılıyor. İki durumda da yapılan her şey tarihli kayda giriyor.</p>
   </section>
 
   <!-- 6 · NELER YAPIYORUZ -->
